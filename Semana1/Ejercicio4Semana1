@@ -1,1 +1,91 @@
+package main
+
+/*
+	Escriba un programa que utilice una estructura y un arreglo/slice para almacenar en memoria un inventario de una tienda que vende zapatos.
+Cada zapato debe contar con la información de su modelo (marca), su precio y la talla del mismo que debe ir únicamente del 34 al 44.
+La estructura debe llamarse "calzado". El programa debe poder almacenar la información “quemada” para 10+ zapatos del inventario
+y un stock de N cantidad de unidades de dicho zapato (quiere decir por ejemplo que puede existir en i
+nventario el zapato marca Nike, talla 42 y que cuesta 50000 colones, pero además que puede existir no solo un par de esos, si no N pares del mismo zapato).
+
+Haga una función que venda zapatos (eliminando del stock cada vez que haya venta e indicando
+que no se puede vender porque ya o hay stock) y pruébela dentro del main haciendo las ventas
+que usted considere para demostrar su funcionamiento.
+
+*/
+
+import (
+	"fmt"
+)
+
+type Calzado struct {
+	MarcaCalzado    string
+	PrecioCalzado   int
+	TallaCalzado    int //de 34 a 44
+	StockDeCalzados int
+}
+
+type listaCalzado []Calzado
+
+var zapatos listaCalzado
+
+func AlmacenamientoStock() {
+	zapatos.agregarCalzado("Nike", 34, 8, 34000)
+	zapatos.agregarCalzado("Nike", 35, 6, 35000)
+	zapatos.agregarCalzado("Nike ", 36, 7, 36000)
+	zapatos.agregarCalzado("Nike", 37, 4, 40000)
+	zapatos.agregarCalzado("Nike", 38, 12, 42000)
+	zapatos.agregarCalzado("Nike", 39, 11, 44000)
+	zapatos.agregarCalzado("Nike", 40, 23, 48000)
+	zapatos.agregarCalzado("Nike", 41, 30, 50000)
+	zapatos.agregarCalzado("Nike", 42, 14, 50500)
+	zapatos.agregarCalzado("Nike", 43, 7, 52000)
+	zapatos.agregarCalzado("Nike", 43, 12, 53000)
+
+}
+
+func (l *listaCalzado) VentaCalzado(marca string, talla int, cantS int) {
+
+	var i = l.buscarCalzado(marca, talla)
+	if i != -1 && cantS > 0 {
+		if (*l)[i].StockDeCalzados >= cantS {
+			(*l)[i].StockDeCalzados = (*l)[i].StockDeCalzados - cantS
+			fmt.Println("gracias por su compra")
+
+		} else {
+			var cantStock = (*l)[i].StockDeCalzados
+			fmt.Println("No existe la cantidad suficiente para realizar su pedido", "\n",
+				"la cantidad en stock es de: ", cantStock)
+		}
+	}
+
+}
+
+func (l *listaCalzado) agregarCalzado(marca string, talla int, cantidad int, precio int) {
+	var i = l.buscarCalzado(marca, talla)
+	if (i) != -1 {
+		(*l)[i].StockDeCalzados = (*l)[i].StockDeCalzados + cantidad
+	} else {
+		zapatos = append(zapatos, Calzado{MarcaCalzado: marca, TallaCalzado: talla, StockDeCalzados: cantidad, PrecioCalzado: precio})
+	}
+
+}
+
+func (l *listaCalzado) buscarCalzado(marca string, talla int) int { //el retorno es el índice del producto encontrado y -1 si no existe
+	var result = -1
+	var i int
+	for i = 0; i < len(*l); i++ {
+		if (*l)[i].MarcaCalzado == marca && (*l)[i].TallaCalzado == talla {
+			result = i
+		}
+	}
+	return result
+}
+
+func main() {
+	AlmacenamientoStock()                        //se carga el stock de calzados
+	zapatos.VentaCalzado("Nike", 40, 25)         //el usuraio pide una cantidad que se niega por falta de stock
+	zapatos.agregarCalzado("Nike", 40, 2, 48000) //se agregan mas cantidad al stock
+	zapatos.VentaCalzado("Nike", 40, 25)         //se logra vender
+	zapatos.VentaCalzado("Nike", 40, 1)          // como se resta el stock ya no existen unidades
+}
 
