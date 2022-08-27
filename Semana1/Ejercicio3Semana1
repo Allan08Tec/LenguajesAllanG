@@ -1,1 +1,59 @@
+package main
+
+/*
+Escriba una función que permita rotar una secuencia de elementos N posiciones a la izquierda o a la derecha según sea el caso
+en función al parámetro que se reciba. Los parámetros deben ser un puntero a un arreglo previamente creado, la cantidad de movimiento
+de rotación y la dirección (0 = izq y 1 = der).
+
+A partir de esta función, escriba un programa que haga varias rotaciones cualesquiera de una secuencia de
+elementos previamente creada que sea inmutable.
+Al final debe imprimirse el resultado de cada rotación además de la secuencia original.
+
+*/
+
+import (
+	"fmt"
+)
+
+func Rotacion(arr *[8]string, direccion string, Numrotar int) [8]string {
+	var temporal string
+	for rot := 0; rot < Numrotar; rot++ { // se rotara las letras hasta la cantidad de veces que se indique
+		if direccion == "Izq" { //si la direccion enviada es la izquierda el arreglo rotara a la izquierda
+			temporal = arr[0]
+			for i := 0; i < len(arr); i++ {
+				if i != 7 {
+					arr[i] = arr[i+1]
+				} else {
+					arr[7] = temporal
+				}
+			}
+
+		} else { // sino el arreglo rotara a la derecha
+			temporal = arr[7]
+			for i := len(arr) - 1; i > -1; i-- {
+				if i != 0 {
+					arr[i] = arr[i-1]
+				} else {
+					arr[0] = temporal
+				}
+
+			}
+		}
+	}
+	return *arr // se devuelve el arreglo rotado
+}
+
+func main() {
+
+	arreglo := [8]string{"a", "b", "c", "d", "e", "f", "g", "h"}
+	arreglo2 := [8]string{"a", "b", "c", "d", "e", "f", "g", "h"}
+	fmt.Println("El arreglo original es: ", arreglo)
+
+	var AIzq = Rotacion(&arreglo, "Izq", 3)
+	var ADer = Rotacion(&arreglo2, "Der", 3)
+
+	fmt.Println("El arreglo rotado hacia la Izquierda es ", AIzq)
+	fmt.Println("El arreglo rotado hacia la Derecha es ", ADer)
+
+}
 
