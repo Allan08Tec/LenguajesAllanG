@@ -47,13 +47,14 @@ func main() {
 
 	arreglo := [8]string{"a", "b", "c", "d", "e", "f", "g", "h"}
 	arreglo2 := [8]string{"a", "b", "c", "d", "e", "f", "g", "h"}
+	rotaciones := 3
 	fmt.Println("El arreglo original es: ", arreglo)
+	fmt.Println("Numero de rotaciones a realizar", rotaciones)
 
-	var AIzq = Rotacion(&arreglo, "Izq", 3)
-	var ADer = Rotacion(&arreglo2, "Der", 3)
+	var AIzq = Rotacion(&arreglo, "Izq", rotaciones)
+	var ADer = Rotacion(&arreglo2, "Der", rotaciones)
 
 	fmt.Println("El arreglo rotado hacia la Izquierda es ", AIzq)
 	fmt.Println("El arreglo rotado hacia la Derecha es ", ADer)
 
 }
-
