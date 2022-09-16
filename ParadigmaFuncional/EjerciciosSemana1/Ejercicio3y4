@@ -1,0 +1,29 @@
+--funcion de aplanar listas
+aplanar::[[a]]->[a]
+aplanar []=[]
+aplanar (x:xs)=x++aplanar xs
+
+
+--Variannte usando map
+
+aplanar2::[[a]]->[a]
+aplanar2 xs=concat(map id xs)
+
+
+
+main::IO()
+main=do
+
+--Imprimir la funcion aplanar
+print("Funcion aplanar listas  [[1,2,3],[4,5,6],[7,8,9]]")
+print (aplanar [[1,2,3],[4,5,6],[7,8,9]])
+print("Funcion aplanar listas con maap [[12,3],[4],[7,8,10]]")
+print (aplanar2 [[12,3],[4],[7,8,10]])
+
+
+
+--Consola
+--"Funcion aplanar listas  [[1,2,3],[4,5,6],[7,8,9]]"
+--[1,2,3,4,5,6,7,8,9]
+--"Funcion aplanar listas con maap [[12,3],[4],[7,8,10]]"
+--[12,3,4,7,8,10]
