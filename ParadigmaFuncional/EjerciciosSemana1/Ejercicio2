@@ -1,1 +1,20 @@
+--Funcion de Comprobacion de conjuntos
+subConjunto::[Int]->[Int]->Bool
+subConjunto [] _ = True
+subConjunto (x:xs) ys = if (elem x ys) then subConjunto xs ys else False
 
+
+
+main::IO()
+main = do   
+    print("el conjunto [1,2,3] es subconjunto de [1,2,3,4,5] ?")
+    print (subConjunto [1,2,3] [1,2,3,4,5])
+    print("el conjunto [1,2,3,4] es subconjunto de [1,2,3,6] ?")
+    print (subConjunto [1,2,3,4] [1,2,3,6])
+
+
+--Consola
+--"el conjunto [1,2,3] es subconjunto de [1,2,3,4,5] ?"
+--True
+--"el conjunto [1,2,3,4,5] es subconjunto de [1,2,3,6] ?"
+--False
