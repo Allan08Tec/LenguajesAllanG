@@ -1,1 +1,34 @@
 
+comparar :: (Eq a) => [a] -> [a] -> Bool
+comparar (x:xs) (y:ys)     --x cabeza, xs cola
+   | x == y = comparar xs ys
+   | otherwise = comparar (x:xs) ys
+comparar [] [] = True
+comparar [] _ = True
+comparar _ [] = False
+
+
+
+subCadenas :: (Eq a) => [a] -> [[a]] -> [[a]]
+subCadenas c [] = []
+subCadenas c (x:xs) 
+   | comparar c x = x : subCadenas c xs
+   | otherwise = subCadenas c xs
+
+
+
+main:: IO()
+main = do 
+  
+print("Imprimiendo solo lista de subCadenas que contienen la ")
+print (subCadenas "la" ["la casa", "el perro", "pintando la cerca"])
+print("Imprimiendo la lista de las subCadenas que contiene Azul")
+print (subCadenas "azul" ["la casa es Azul", "el perro tiene un collar Azul", "pintando la cerca de color blanco"])
+    
+
+
+--Consola 
+--"Imprimiendo solo lista de subCadenas que contienen la "
+--["la casa","pintando la cerca"]
+--"Imprimiendo la lista de las subCadenas que contiene Azul"
+--["la casa es Azul","el perro tiene un collar Azul"] 
