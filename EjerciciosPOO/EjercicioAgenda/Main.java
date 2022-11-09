@@ -1,3 +1,6 @@
+//elaborado por Olman Acuña y Allan Gonzàlez
+
+
 public class Main {
     public static void main(String[] args) {
         Agenda agendaPersonal = new Agenda();
