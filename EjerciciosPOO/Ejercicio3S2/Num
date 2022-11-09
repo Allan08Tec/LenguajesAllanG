@@ -1,0 +1,18 @@
+public class Num {
+    public float numero;
+
+    public Num(float numero) {
+        this.numero = numero;
+    }
+
+    public float getNum() {
+        return numero;
+    }
+
+    public void setNum(float numero) {
+        this.numero = numero;
+    }
+
+
+
+}
