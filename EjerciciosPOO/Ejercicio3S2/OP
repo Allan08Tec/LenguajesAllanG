@@ -1,1 +1,18 @@
 
+public class Op {
+    private String operator;
+
+    public Op(String op) {
+        this.operator = op;
+    }
+
+    public String getOp() {
+        return operator;
+    }
+
+    public void setOp(String op) {
+        this.operator = op;
+    }
+
+
+}
