@@ -50,3 +50,6 @@ main = do
     print(precioTotalImpuestos listaProductos)
     
 
+--resultado
+--  15000.0
+--  16500.0
