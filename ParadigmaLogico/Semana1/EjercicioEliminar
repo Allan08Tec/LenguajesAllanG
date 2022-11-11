@@ -1,4 +1,3 @@
-
 eliminar(_,[],[]):-!.
 
 eliminar(X,[X|L],L1):-eliminar(X,L,L1).
@@ -18,3 +17,6 @@ eliminar(1,[1,2,3,1,4,1,5,1],X).
 
 X = [2, 3, 4, 5].
 
+--resultado esperado
+
+X = [2, 3, 4, 5].
