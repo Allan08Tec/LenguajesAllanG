@@ -1,0 +1,11 @@
+miembro(N,[N|_]).
+miembro(N,[_|L]) :- miembro(N,L).
+
+subconjunto([],_).
+subconjunto([X|L1],L2) :- miembro(X,L2), subconjunto(L1,L2).
+
+
+--probar con:
+?- subconjunto([1,2,3],[1,2,3,4,5]).
+true.
+
