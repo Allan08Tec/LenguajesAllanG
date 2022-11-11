@@ -1,0 +1,9 @@
+func aumentarInventarioDeMinimos(productos listaProductos) {
+	for i := 0; i < len(productos); i++ {
+		if productos[i].cantidad <= existenciaMinima {
+			productos[i].cantidad = 10 - productos[i].cantidad
+		}
+	}
+	fmt.Println("Lista de productos con cantidad por debajo del mínimo:\n ", productos, "actualizada")
+
+}
