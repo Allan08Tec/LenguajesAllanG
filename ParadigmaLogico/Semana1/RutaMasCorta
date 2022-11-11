@@ -1,0 +1,56 @@
+
+
+borde(i,a,20).
+borde(i,b,10).
+borde(a,c,4).
+borde(a,d,7).
+borde(b,c,2).
+borde(c,x,10).
+borde(d,b,5).
+borde(f,d,15).
+%            4     10
+%        a ---- c ---- x
+%  20  /   \  /
+%     /    7\/
+%   i       /\
+%     \    /2 \
+%  10  \  /    \
+%        b ---- d ---- f
+%            5      15
+%los bordes son bidireccionales
+conectado(X,Y,L) :- borde(X,Y,L) ; borde(Y,X,L).
+
+camino(A,B,Path,Len) :-
+       viaje(A,B,[A],Q,Len),
+       reverse(Q,Path).
+
+viaje(A,B,P,[B|P],L) :-
+       conectado(A,B,L).
+viaje(A,B,Visitado,Path,L) :-
+       conectado(A,C,D),
+       C \== B,
+       \+member(C,Visitado),
+       viaje(C,B,[C|Visitado],Path,L1),
+       L is D+L1.
+
+rutaCorta(A,B,Path,Length) :-
+   setof([P,L],camino(A,B,P,L),Set),
+   Set = [_|_], %falla si es vacio
+   minimo(Set,[Path,Length]).
+   
+%implementacion del nuevo metodo para calcular rutas%
+
+%calcular la ruta minima usando los pesos
+minimo([X],X).
+minimo([X|Xs],Min) :-
+   minimo(Xs,Min1),
+   menor(X,Min1,Min).
+
+menor([_,L1],[_,L2],[_,L1]) :- L1 =< L2.
+menor([_,L1],[_,L2],[_,L2]) :- L1 > L2.
+
+%ejemplo de uso
+%rutaCorta(i,x,P,L).
+%P = [i, a, c, x]
+%L = 14
+
