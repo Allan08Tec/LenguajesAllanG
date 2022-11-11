@@ -1,1 +1,20 @@
 
+eliminar(_,[],[]):-!.
+
+eliminar(X,[X|L],L1):-eliminar(X,L,L1).
+
+eliminar(X,[Y|L],[Y|L1]):-X\=Y,eliminar(X,L,L1).
+
+eliminar(X,[X|L],L1):- eliminar(X,L,L1).
+
+eliminar(X,[Y|L],[Y|L1]):-X\=Y, eliminar(X,L,L1).
+
+eliminar(E,[E|T],X):-eliminar(E,T,X),!.
+eliminar(E,[H|T],[H|T1]):-eliminar(E,T,T1).
+
+--probar con esto
+
+eliminar(1,[1,2,3,1,4,1,5,1],X).
+
+X = [2, 3, 4, 5].
+
