@@ -1,0 +1,11 @@
+sub_cadenas(_,[],[]).
+sub_cadenas(Subcadena,[Cadena|Resto],[Cadena|Filtradas]):-
+    sub_string(Cadena,_,_,_,Subcadena),
+    sub_cadenas(Subcadena,Resto,Filtradas).
+
+/*
+sub_cadenas(“la”, [“la casa”, “el perro”, “pintando la cerca”],Filtradas).
+Filtradas = [“la casa”, “pintando la cerca”]
+sub_cadenas(“la”, [“la casa”, “el perro”, “pintando la cerca”],Filtradas).
+Filtradas = [“la casa”, “pintando la cerca”]
+*/
