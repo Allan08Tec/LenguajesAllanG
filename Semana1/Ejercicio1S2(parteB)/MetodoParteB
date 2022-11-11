@@ -1,0 +1,10 @@
+func ordenarListaProductos(productos listaProductos) {
+	for i := 0; i < len(productos); i++ {
+		for j := i + 1; j < len(productos); j++ {
+			if productos[i].nombre > productos[j].nombre {
+				productos[i], productos[j] = productos[j], productos[i]
+			}
+		}
+	}
+	fmt.Println("Lista de productos ordenada por nombre")
+}
