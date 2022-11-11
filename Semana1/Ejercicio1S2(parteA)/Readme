@@ -1,0 +1,3 @@
+a.	A partir de la lista de productos con mínimas existencias de inventario, 
+ampliar dicho inventario con la compra de más unidades de dicho producto hasta que cumplan con el mínimo establecido de manera constante.
+Se sugiere crear una función denominada “aumentarInventarioDeMinimos(listaMinimos)”
